@@ -1,0 +1,53 @@
+{% load static %}
+{% block body  %}
+{% include 'navbar.html' %}
+
+<marquee style="font-size:25px;color:red; background-color:black;font-weight:bold;margin-top:2%">
+    Contact Page
+</marquee>
+<hr>
+<form class="container mt-5" method="post" >
+    {% csrf_token %}
+    <div class="form-row">
+        <div class= "form-group col-md-12">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="fname" placeholder="Enter Full Name" required>
+        </div>
+
+
+    </div>
+
+        <div class= "form-group col-md-12">
+            <label>Contact Number</label>
+            <input type="text" class="form-control" name="cnumber" placeholder="Enter contact number" required>
+        </div>
+         <div class= "form-group col-md-12">
+            <label>Email</label>
+            <input type="email" class="form-control" name="cemail" placeholder="Enter Your Email" required>
+        </div>
+
+         <div class= "form-group col-md-12">
+            <label>Message</label>
+             <textarea class="form-control" name="cmsg" placeholder="Enter Your Message" required></textarea>
+        </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary mt-2">
+</form>
+
+{% include 'footer.html' %}
+
+{% ifequal error "no" %}
+<script>
+    alert("Your Message sent Succesfully ")
+    window.location = ('{% url 'index' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong, Try Again....")
+</script>
+{% endifequal %}
+
+
+{% endblock %}
